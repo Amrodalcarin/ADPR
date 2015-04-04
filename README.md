@@ -1,6 +1,16 @@
 # Práctica: Analizador Descendente Predictivo Recursivo
 
-* [Deployment in Heroku](http://predictiveparser.herokuapp.com/)
+Se trata de un analizador léxico descendente predictivo recursivo; es decir, que no requiere backtracking.
+
+Esto sólo es posible para gramáticas de tipo LL(k).
+
+* [Despliegue en Heroku](http://predictiveparser.herokuapp.com/)
+
+## Autores
+
+* [Daniel E. Quijada Díaz](http://danielquijada.github.io/)
+* [Mauricio Manuel Cavalleri Sergent](http://mauriciomcavalleris.github.io/)
+
 
 ## Tareas
 
@@ -12,4 +22,3 @@ Añada:
 * Usa Sass para las hojas de estilo
 * Despliegue la aplicación en Heroku
 * Añada pruebas
-
