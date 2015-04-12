@@ -25,7 +25,7 @@ RegExp::bexec = (str) ->
   return m  if m and m.index is i
   null
 
-# Añade a la clase String el método "tokens". 
+# Añade a la clase String el método "tokens".
 # Este método convierte el string en un array de objetos tipo token (definidos más abajo).
 String::tokens = ->
   from = undefined # The index of the start of the token.
