@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  h1 Top Down Operator Precedence
+    |          
+    p
+      input#files(type='file')
+    |          
+    div(width='100%')
+      textarea#INPUT(placeholder='Introduzca el texto o arrastre el archivo que desea analizar.')
+    |          
+    #botones
+      input#PARSE.btn.btn-primary(value='Parsear', type='button', role='button')
+      |             
+      input#CLEAR.btn.btn-primary(value='Limpiar', type='button', role='button')
+    |          
+    noscript
+      p You may not see it because you have JavaScript turned off. Uffff!
+    |          
+    script(src='tokens.js')
+    |          
+    script(src='readFile.js')
+    |          
+    script(src='parse.js')
+    |          
+    script(src='basics.js')
+    |          
+    pre#OUTPUT.
+      
+    |          
+    div(style='position: absolute; top: 1%; left: 1%; padding: 2%;')
+      table#info
+        tr
+          th
+            a.btn.btn-primary(href='https://github.com/MauricioMCavalleriS/Analizador_Lexico_JS', role='button', target='_blank') repositorio
+        |              
+        tr
+          th
+            a.btn.btn-primary(href='http://mauriciomcavalleris.github.io', role='button', target='_blank') github-page del autor Mauricio
+        |              
+        tr
+          th
+            a.btn.btn-primary(href='http://danielquijada.github.io', role='button', target='_blank') github-page del autor Daniel
+        |              
+        tr
+          th
+            a.btn.btn-primary(href='tests/index.html', role='button', target='_blank') tests
+        |              
+        tr
+          th
+            a(href='https://travis-ci.org/MauricioMCavalleriS/Analizador_Lexico_JS', target='_blank')
+              img(src='https://travis-ci.org/MauricioMCavalleriS/Analizador_Lexico_JS.svg?branch=gh-pages', alt='Travis')
