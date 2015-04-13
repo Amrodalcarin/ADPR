@@ -212,7 +212,7 @@ parse = (input) ->
     result
 
   term = ->
-    result = factor()
+    result = termDiv()
     if lookahead and lookahead.type is "*"
       match "*"
       right = term()
