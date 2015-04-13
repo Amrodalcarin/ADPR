@@ -7,15 +7,14 @@ html *
 h1            {
   text-align: center;
   font-size: 500%;
-  padding-bottom: 3%;
-  padding-top: 6%;
+  padding-top: 3%;
   font-family: "Georgia", bold;
   }
 
 th, td, p        {
   vertical-align: top;
   text-align: center;
-  padding: 10px  10px;
+  padding: 1px  1px;
   }
 
 input        {
@@ -26,6 +25,8 @@ input        {
 
   input#files {
      margin-left: 25%;
+     font-size: 25%;
+     padding-top: 3%;
  }
 
 table {
@@ -37,6 +38,7 @@ table {
 
 textarea {
   border: 2px solid black;
+  font-size: 30%;
   color: black;
   font-family: monospace;
   height: 100px;
@@ -71,6 +73,7 @@ div#botones {
 
 body
 {
+ background-image: url("../images/fondo.jpg");
  background-color:white;  /* blue */
  text-align: center;
  font-weight: bold;
