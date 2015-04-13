@@ -55,6 +55,7 @@ pre {
   padding: 0.5em;
   width: 50%;
   margin: auto;
+  resize: both;
 }
 
 pre#OUTPUT {

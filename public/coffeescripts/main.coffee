@@ -1,6 +1,8 @@
 # Funcion Main:
 #     Coloca el resultado de llamar a parse en el OUTPUT.
 main = ()->
+  if INPUT.value is ""
+    INPUT.value = "a = 1-2-3;"
   source = INPUT.value
   try
     result = JSON.stringify(parse(source), null, 2)
@@ -188,23 +190,45 @@ parse = (input) ->
     result
 
   expression = ->
-    result = term()
+    result = expressionResta()
     if lookahead and lookahead.type is "+"
       match "+"
-      right = expression()
+      exp = expression()
       result =
         type: "+"
+        left: result
+        right: exp
+    result
+
+  expressionResta = ->
+    result = term()
+    if lookahead and lookahead.type is "-"
+      match "-"
+      right = expressionResta()
+      result =
+        type: "-"
         left: result
         right: right
     result
 
   term = ->
-    result = factor()
+    result = termDiv()
     if lookahead and lookahead.type is "*"
       match "*"
       right = term()
       result =
         type: "*"
+        left: result
+        right: right
+    result
+
+  termDiv = ->
+    result = factor()
+    if lookahead and lookahead.type is "/"
+      match "/"
+      right = termDiv()
+      result =
+        type: "/"
         left: result
         right: right
     result
@@ -230,7 +254,7 @@ parse = (input) ->
     else # Throw exception
       throw "Syntax Error. Expected number or identifier or '(' but found " +
         (if lookahead then lookahead.value else "end of input") +
-        " near '" + input.substr(lookahead.from) + "'"
+        (if lookahead then " near '" + input.substr(lookahead.from) + "'" else ".")
     result
 
   tree = statements(input)
