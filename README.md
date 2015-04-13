@@ -1,4 +1,7 @@
-# Práctica: Analizador Descendente Predictivo Recursivo
+Práctica: Analizador Descendente Predictivo Recursivo
+=====================================================
+
+## Descripción:
 
 Se trata de un analizador léxico descendente predictivo recursivo; es decir, que no requiere backtracking.
 

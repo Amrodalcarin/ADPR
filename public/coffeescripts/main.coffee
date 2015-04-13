@@ -1,7 +1,7 @@
 # Funcion Main:
 #     Coloca el resultado de llamar a parse en el OUTPUT.
 main = ()->
-  source = original.value
+  source = INPUT.value
   try
     result = JSON.stringify(parse(source), null, 2)
   catch result
@@ -9,9 +9,14 @@ main = ()->
 
   OUTPUT.innerHTML = result
 
-# Cuando ha cargado la página, asigna la funcion main () al onClick del boton PARSE.
+clear = () ->
+  OUTPUT.innerHTML = ""
+  INPUT.value = ""
+
+# Cuando ha cargado la página, asigna la funcion main () al onClick de los botones.
 window.onload = ()->
   PARSE.onclick = main
+  CLEAR.onclick = clear
 
 Object.constructor::error = (message, t) ->
   t = t or this
