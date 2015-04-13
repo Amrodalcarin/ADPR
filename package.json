@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "prestart": "coffee -c ./app.coffee ./routes/index.coffee ./routes/users.coffee ./public/coffeescripts/main.coffee ./bin/www.coffee",
-    "start": "node ./bin/www.js",
+    "stop": "coffee -c ./app.coffee ./routes/index.coffee ./routes/users.coffee ./public/coffeescripts/main.coffee ./bin/www.coffee",
+    "start": "coffee ./bin/www.coffee",
     "stop": "rm ./app.js ./routes/index.js ./routes/users.js ./public/coffeescripts/main.js ./bin/www.js"
   },
   "dependencies": {
