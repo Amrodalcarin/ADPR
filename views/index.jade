@@ -1,6 +1,11 @@
 extends layout
 
 block content
+  - each post in posts
+    .page-header
+      li
+        a(href="/post/#{post.id}")= post.title
+        .content!=post.body
   h1
     p
     | Analizador Descendente <br>
