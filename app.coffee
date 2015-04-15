@@ -7,6 +7,7 @@ bodyParser = require('body-parser')
 routes = require('./routes/index')
 users = require('./routes/users')
 sass = require('node-sass')
+sassMiddleware = require('node-sass-middleware');
 app = express()
 # view engine setup
 app.set 'views', path.join(__dirname, 'views')
@@ -17,12 +18,17 @@ app.use logger('dev')
 app.use bodyParser.json()
 app.use bodyParser.urlencoded(extended: false)
 app.use cookieParser()
-app.use express.static(path.join(__dirname, 'public'))
-#app.use sass.middleware(
-#  src: __dirname + '/public/stylesheets/sass'
-#  dest: __dirname + '/public/stylesheets'
-#  debug: true
-#  outputStyle: 'compressed')
+
+srcPath = __dirname + '/sass'
+destPath = __dirname + '/public'
+app.use(sassMiddleware({
+       src: srcPath,
+       dest: destPath,
+       debug: true,
+   }));
+
+app.use(express.static(path.join( __dirname, 'public')));
+
 app.use '/', routes
 app.use '/users', users
 # catch 404 and forward to error handler
