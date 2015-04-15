@@ -1,1 +1,1 @@
-web: coffee ./bin/www.coffee
+web: coffee /www/coffee
