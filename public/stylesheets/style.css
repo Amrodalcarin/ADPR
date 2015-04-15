@@ -73,6 +73,16 @@ div#info {
   left: 1%;
   padding: 2%; }
 
+input#files {
+  font-size: 2em;
+  height: 10000%; }
+
 table#info {
   border-collapse: separate;
   border-spacing: 1em; }
+
+.btn {
+  margin: 1%; }
+
+#PARSE, #CLEAR {
+  font-size: 200%; }

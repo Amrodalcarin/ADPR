@@ -19,9 +19,11 @@ clear = () ->
 
 # Cuando ha cargado la página, asigna la funcion main () al onClick de los botones.
 window.onload = ()->
-  console.log ("botones")
   PARSE.onclick = main
   CLEAR.onclick = clear
+  EJE1.onclick = cargar
+  EJE2.onclick = cargar
+  EJE3.onclick = cargar
   files.addEventListener "change", CopyMe
   INPUT.addEventListener "dragover", handleDragOver
   INPUT.addEventListener "drop", handleFileSelect
@@ -55,6 +57,15 @@ handleFileSelect = (evt) ->
     i++
   evt.target.style.background = 'white'
   return
+
+cargar = (value) ->
+  filename = "ejemplos/" + value.srcElement.name
+  $.ajax
+    url: filename
+    dataType: "text"
+    success: (data) ->
+      INPUT.value = data
+      main()
 
 CopyMe = (evt) ->
   console.log ("entro");
