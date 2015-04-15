@@ -2,8 +2,6 @@
 #     Coloca el resultado de llamar a parse en el OUTPUT.
 
 main = ()->
-  if INPUT.value is ""
-    INPUT.value = "a = 1-2-3;"
   source = INPUT.value
   try
     result = JSON.stringify(parse(source), null, 2)
