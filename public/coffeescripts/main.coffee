@@ -16,19 +16,54 @@ clear = () ->
   OUTPUT.innerHTML = ""
   INPUT.value = ""
 
+
 # Cuando ha cargado la página, asigna la funcion main () al onClick de los botones.
 window.onload = ()->
   console.log ("botones")
   PARSE.onclick = main
   CLEAR.onclick = clear
+  files.addEventListener "change", CopyMe
+  INPUT.addEventListener "dragover", handleDragOver
+  INPUT.addEventListener "drop", handleFileSelect
+
+handleDragOver = (evt) ->
+  evt.stopPropagation()
+  evt.preventDefault()
+  evt.target.style.background = 'purple'
+  return
+
+handleFileSelect = (evt) ->
+  evt.stopPropagation()
+  evt.preventDefault()
+  files = evt.dataTransfer.files
+  # FileList object.
+  INPUT.value = ''
+  i = 0
+  f = undefined
+  while f = files[i]
+    reader = new FileReader
+    reader.readAsText f
+
+    reader.onload = (e) ->
+      txt = INPUT.value
+      if txt != ''
+        txt = txt + '\n'
+      txt = txt + e.target.result
+      INPUT.value = txt
+      return
+
+    i++
+  evt.target.style.background = 'white'
+  return
 
 CopyMe = (evt) ->
+  console.log ("entro");
   file = evt.target.files[0]
   if file
     reader = new FileReader
 
     reader.onload = (e) ->
-      INPUT.innerHTML = e.target.result
+      INPUT.value = e.target.result
       return
 
     c = reader.readAsText(file)
