@@ -18,8 +18,23 @@ clear = () ->
 
 # Cuando ha cargado la página, asigna la funcion main () al onClick de los botones.
 window.onload = ()->
+  console.log ("botones")
   PARSE.onclick = main
   CLEAR.onclick = clear
+
+CopyMe = (evt) ->
+  file = evt.target.files[0]
+  if file
+    reader = new FileReader
+
+    reader.onload = (e) ->
+      INPUT.innerHTML = e.target.result
+      return
+
+    c = reader.readAsText(file)
+  else
+    alert 'Failed to load file'
+  return
 
 Object.constructor::error = (message, t) ->
   t = t or this
@@ -264,3 +279,5 @@ parse = (input) ->
       "Expected 'end of input' and found '" +
       input.substr(lookahead.from) + "'"
   tree
+
+window.onload()
