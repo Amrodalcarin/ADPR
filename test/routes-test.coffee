@@ -9,13 +9,5 @@ describe "routes", ->
     it "should display index with posts", ->
       res.render = (view, vars) ->
           expect(view).equal "index"
-          expect(vars.title).equal "My Blog"
-          expect(vars.posts).deep.eq []
+          expect(vars.title).equal "ADPR"
       routes.index(req, res)
-  describe "new post", ->
-    it "should display the add post page", (done)->
-      res.render = (view, vars) ->
-          expect(view).equal "add_post"
-          expect(vars.title).equal "Write New Post"
-          done()
-      routes.newPost(req, res)
