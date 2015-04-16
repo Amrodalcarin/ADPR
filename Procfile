@@ -1,1 +1,1 @@
-web: nodemon bin/www.coffee
+web: node main.js
