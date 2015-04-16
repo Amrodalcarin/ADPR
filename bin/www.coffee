@@ -3,7 +3,7 @@
 ###*
 # Module dependencies.
 ###
-
+require('coffee-script')
 app = require('../app')
 debug = require('debug')('Analizador_DPR:server')
 http = require('http')
