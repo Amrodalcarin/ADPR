@@ -3,7 +3,7 @@
 ###*
 # Module dependencies.
 ###
-require('coffee-script')
+
 app = require('../app')
 debug = require('debug')('Analizador_DPR:server')
 http = require('http')
@@ -26,7 +26,7 @@ normalizePort = (val) ->
 # Get port from environment and store in Express.
 ###
 
-port = normalizePort(process.env.PORT or '3000')
+port = normalizePort(process.env.PORT or '5000')
 
 ###*
 # Event listener for HTTP server "error" event.
