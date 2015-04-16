@@ -20,7 +20,7 @@ app.use bodyParser.urlencoded(extended: false)
 app.use cookieParser()
 
 srcPath = __dirname + '/sass'
-destPath = __dirname + '/public'
+destPath = __dirname + '/views'
 app.use(sassMiddleware({
        src: srcPath,
        dest: destPath,
