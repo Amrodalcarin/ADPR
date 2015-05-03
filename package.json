@@ -6,7 +6,7 @@
      "node": "0.10.x"
   },
   "scripts": {
-    "start": "coffee ./bin/www.coffee"
+    "start": "node ./bin/www.js"
   },
 
   "dependencies": {
