@@ -1,6 +1,8 @@
 var app, bodyParser, cookieParser, destPath, express, favicon, logger, path, routes, sass, sassMiddleware, srcPath, users;
 
 express = require('express');
+var _ = require('underscore');
+var $ = require('jquery');
 path = require('path');
 favicon = require('serve-favicon');
 logger = require('morgan');
@@ -14,7 +16,7 @@ sassMiddleware = require('node-sass-middleware');
 
 
 app = express();
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 5000));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(favicon(__dirname + '/public/images/coffee-favicon.png'));
@@ -64,7 +66,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.get('/', function (request, response) {
-    response.render('index', { title: 'Analizador Lexico JS' });
+    response.render('index', { title: 'ADPR' });
 });
 
 app.listen(app.get('port'), function () {
