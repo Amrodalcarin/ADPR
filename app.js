@@ -9,7 +9,7 @@ logger = require('morgan');
 cookieParser = require('cookie-parser');
 bodyParser = require('body-parser');
 routes = require('./routes/index');
-users = require('./routes/users');
+tests = require('./routes/tests');
 sass = require('node-sass');
 sassMiddleware = require('node-sass-middleware');
 
@@ -38,7 +38,7 @@ app.use(sassMiddleware({
 
 app.use(express["static"](path.join(__dirname, 'public')));
 app.use('/', routes.index);
-app.use('/users', users);
+app.use('/tests', tests.indexT);
 
 app.use(function(req, res, next) {
   var err;
@@ -63,10 +63,6 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
-});
-
-app.get('/', function (request, response) {
-    response.render('index', { title: 'ADPR' });
 });
 
 app.listen(app.get('port'), function () {
