@@ -7,21 +7,26 @@ Se trata de un analizador léxico descendente predictivo recursivo; es decir, qu
 
 Esto sólo es posible para gramáticas de tipo LL(k).
 
-* [Despliegue en Heroku](http://predictiveparser.herokuapp.com/)
+* [Despliegue en Heroku](http://analizer-dpr.herokuapp.com/)
 
-## Autores
+## Autores:
 
 * [Daniel E. Quijada Díaz](http://danielquijada.github.io/)
 * [Mauricio Manuel Cavalleri Sergent](http://mauriciomcavalleris.github.io/)
 
+## Travis:
 
-## Tareas
+[![Build Status](https://travis-ci.org/MauricioMCavalleriS/CSV.svg?branch=gh-pages)](https://travis-ci.org/MauricioMCavalleriS/CSV)
 
-Añada:
+## Características:
 
-* Extienda y modifique el analizador para que acepte el lenguaje descrito por la gramática EBNF del lenguaje PL/0 que se describe en la entrada de la Wikipedia Recursive descent parser. Procure que el arbol generado refleje la asociatividad correcta para las diferencias y las divisiones. No es necesario que el lenguaje sea exactamente igual pero debería ser parecido. Tener los mismos constructos.
-* Use CoffeeScript para escribir el código (fichero views/main.coffee)
-* Use slim para las vistas
-* Usa Sass para las hojas de estilo
-* Despliegue la aplicación en Heroku
-* Añada pruebas
+Se trata de un Analizador del lenguaje PL0, con ciertas mejoras:
+
+* Acepta punto y coma al final de una sentencia aunque no hayan más.
+* Acepta la cadena vacía (después de todo, puede considerarse correcto, aunque no haya nada).
+* Escoge de forma adecuada el órden a la hora de agrupar distintas operaciones aritméticas (en concreto las restas y divisiones estaban incorrectas).
+* Ignora las líneas en blanco, que causaban error en la versión original.
+
+## Tests:
+
+En la página de la aplicación, hay un botón de pruebas, realizadas con Mocha y Chai.
