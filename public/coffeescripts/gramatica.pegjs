@@ -4,31 +4,101 @@
  */
 
 start
-  = additive
+  = primero:statement otras:(PUNTOYCOMA statement ?)* {
+    var b = [primero];
+    for (var i = 0; i < otras.length; i++)
+        if (otras[i][1] != null)
+            b.push(otras[i][1])
+    return b;
+  }
+  /
 
-additive
-  = left:multiplicative PLUS right:additive { return left + right; }
-  / left:multiplicative MINUS right:additive { return left - right; }
-  / multiplicative
+statement
+  = izq:ID IGUAL der:expression { var result = {type: "=", left: izq, right: der}; return result; }
+  / P der:expression { var result = {type: "p", value: der}; return result; }
+  / IF _ con:condition _ THEN _ sta:statement { var result = {type: "if", condition: con, statement: sta}; return result}
 
-multiplicative
-  = left:primary MULT right:multiplicative { return left * right; }
-  / left:primary DIV right:multiplicative { return left / right; }
-  / primary
+condition
+  = izq:expression _ eq:EQ _ der:expression { return {type: eq, left: izq, right: der}}
+  / izq:expression _ eq:NEQ _ der:expression { return {type: eq, left: izq, right: der}}
 
-primary
-  = integer
-  / LEFTPAR additive:additive RIGHTPAR { return additive; }
+expression
+  = suma
 
-integer "integer"
-  = NUMBER
+suma
+  = izq:resta resto:(MAS resta)* {
+      var result = izq;
+      for (var i = 0; i < resto.length; i++) {
+        result = {
+          type: "+",
+          left: result,
+          right: resto[i][1]
+        }
+      }
+      return result;
+    }
+
+resta
+  = izq:multiplicacion resto:(MENOS multiplicacion)* {
+    var result = izq;
+    for (var i = 0; i < resto.length; i++) {
+      result = {
+        type: "-",
+        left: result,
+        right: resto[i][1]
+      }
+    }
+    return result;
+  }
+
+multiplicacion
+  = izq:division resto:(POR division)* {
+    var result = izq;
+    for (var i = 0; i < resto.length; i++) {
+      result = {
+        type: "*",
+        left: result,
+        right: resto[i][1]
+      }
+    }
+    return result;
+  }
+
+division
+  = izq:factor resto:(ENTRE factor)* {
+    var result = izq;
+    for (var i = 0; i < resto.length; i++) {
+      result = {
+        type: "/",
+        left: result,
+        right: resto[i][1]
+      }
+    }
+    return result;
+  }
+
+factor
+  = num:NUMERO { return{type: "NUM", value: num }}
+  / id:ID { return {type: "ID", value: id} }
+  / ABREPAR exp:expression CIERRAPAR { return exp; }
 
 _ = $[ \t\n\r]*
 
-PLUS = _"+"_
-MINUS = _"-"_
-MULT = _"*"_
-DIV = _"/"_
-LEFTPAR = _"("_
-RIGHTPAR = _")"_
-NUMBER = _ digits:$[0-9]+ _ { return parseInt(digits, 10); }
+PUNTOYCOMA = _";"_
+IGUAL = _"="_ {return "="}
+MAS = _"+"_ {return "+"}
+MENOS = _"-"_ { return "-"}
+POR = _"*"_ {return "*"}
+ENTRE = _"/"_ {return "/"}
+P = _"p"_ {return "P"}
+ABREPAR = _"("_ {return "("}
+CIERRAPAR = _")"_ {return ")"}
+
+
+
+EQ = eq:[<>=!][=] {return eq;}
+NEQ = eq:[<>] {return eq;}
+NUMERO = num:[0-9]+ {return num.toString().replace(/,/,"");}
+ID = id:[a-zA-Z0-9_]+ {return id.toString().replace(/,/,"");}
+IF = "if"
+THEN = "then"

@@ -7,7 +7,7 @@
     var result, source;
     source = INPUT.value;
     try {
-      result = peg.parse(source);
+      result = JSON.stringify(parse(source), null, 2);
     } catch (_error) {
       result = _error;
       result = "<div class=\"error\">" + result + "</div>";
@@ -195,7 +195,12 @@
         throw ("Syntax Error. Expected " + t + " found '") + lookahead.value + "' near '" + input.substr(lookahead.from) + "'";
       }
     };
-    statements = function() {
+
+    statements = function () {
+      var result = peg.parse ();
+    }
+
+    statementsViejo = function() {
       var result;
       result = [statement()];
       while (lookahead && lookahead.type === ";") {
