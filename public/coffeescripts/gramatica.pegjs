@@ -4,7 +4,7 @@
  */
 
 start
-  = primero:statement otras:(PUNTOYCOMA statement ?)* {
+  = _ primero:statement _ otras:(PUNTOYCOMA statement ?)* _ {
     var b = [primero];
     for (var i = 0; i < otras.length; i++)
         if (otras[i][1] != null)
@@ -98,7 +98,7 @@ CIERRAPAR = _")"_ {return ")"}
 
 EQ = eq:[<>=!][=] {return eq;}
 NEQ = eq:[<>] {return eq;}
-NUMERO = num:[0-9]+ {return num.toString().replace(/,/,"");}
-ID = id:[a-zA-Z0-9_]+ {return id.toString().replace(/,/,"");}
+NUMERO = num:[0-9]+ {return num.toString().replace(/,/g,"");}
+ID = id:[a-zA-Z0-9_]+ {return id.toString().replace(/,/g,"");}
 IF = "if"
 THEN = "then"

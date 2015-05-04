@@ -7,7 +7,7 @@
     var result, source;
     source = INPUT.value;
     try {
-      result = JSON.stringify(parse(source), null, 2);
+      result = JSON.stringify(peg.parse(source), null, 2)
     } catch (_error) {
       result = _error;
       result = "<div class=\"error\">" + result + "</div>";
@@ -180,26 +180,6 @@
     }
     return result;
   };
-
-  parse = function(input) {
-    var condition, expression, expressionResta, factor, lookahead, match, statement, statements, term, termDiv, tokens, tree;
-    tokens = input.tokens();
-    lookahead = tokens.shift();
-    match = function(t) {
-      if (lookahead.type === t) {
-        lookahead = tokens.shift();
-        if (typeof lookahead === "undefined") {
-          lookahead = null;
-        }
-      } else {
-        throw ("Syntax Error. Expected " + t + " found '") + lookahead.value + "' near '" + input.substr(lookahead.from) + "'";
-      }
-    };
-
-    statements = function () {
-      var result = peg.parse ();
-    }
-
 
   window.onload();
 
